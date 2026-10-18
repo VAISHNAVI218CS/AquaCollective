@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Share an observation — AquaCollective</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">≈</span><span>Aqua<span class="brand-light">Collective</span></span></a>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav class="nav-links">
+      <a href="index.html">Home</a><a href="map.html">Explore map</a><a href="dashboard.html">My dashboard</a><a data-research-link href="research.html">Research</a>
+      <a class="nav-auth" href="login.html">Log in</a>
+    </nav>
+  </header>
+  <main class="page-main wrap">
+    <div class="page-intro">
+      <a class="back-link" href="index.html">← Back home</a>
+      <span class="eyebrow">YOUR OBSERVATION MATTERS</span>
+      <h1>What are you noticing?</h1>
+      <p>A few simple details help your community see the bigger picture. Please don’t taste water to assess it.</p>
+    </div>
+    <div class="report-layout">
+      <form id="report-form" class="panel form-stack report-form">
+        <div class="form-section-head">
+          <span class="section-step">1</span>
+          <div><h2>Where did you see it?</h2><p>Use your location or drop a pin on the map.</p></div>
+        </div>
+        <div class="location-actions">
+          <button type="button" class="button button-outline" id="locate-me">◎ Use my current location</button>
+          <span class="field-hint" id="location-status">Or click the map to place a pin.</span>
+        </div>
+        <div id="report-picker-map" class="picker-map"></div>
+        <div class="two-column">
+          <label>Latitude<input type="number" name="lat" id="report-lat" step="any" min="-90" max="90" placeholder="e.g. 37.7749" required></label>
+          <label>Longitude<input type="number" name="lng" id="report-lng" step="any" min="-180" max="180" placeholder="e.g. -122.4194" required></label>
+        </div>
+        <label>Place name <span class="optional">(optional)</span><input type="text" name="location_name" maxlength="160" placeholder="A nearby stream, well, or landmark"></label>
+
+        <div class="form-section-head form-section-spaced">
+          <span class="section-step">2</span>
+          <div><h2>What did you notice?</h2><p>Choose what best describes the water. “Not tested” is always okay.</p></div>
+        </div>
+        <div class="two-column">
+          <label>Water color<select name="color" required><option value="">Select a color</option><option>Clear</option><option>Yellow</option><option>Brown</option><option>Green</option><option>Other</option></select></label>
+          <label>Smell<select name="smell" required><option value="">Select a smell</option><option>None</option><option>Chemical</option><option>Sewage</option><option>Fishy</option><option>Other</option></select></label>
+          <label>Taste <span class="optional">(only if already safely known)</span><select name="taste" required><option value="">Select one</option><option>Not tested</option><option>Normal</option><option>Metallic</option><option>Bitter</option><option>Salty</option><option>Other</option></select></label>
+          <label>Water clarity<select name="turbidity" required><option value="">Select clarity</option><option>Clear</option><option>Slightly cloudy</option><option>Very cloudy</option></select></label>
+          <label>Algae / Green growth<select name="algae" required><option>None</option><option>Little</option><option>Moderate</option><option>A lot</option></select></label>
+          <label>Unusual insects<select name="insects" required><option>None</option><option>Yes – few</option><option>Yes – many</option></select></label>
+          <label>Source type
+            <select name="source_type" id="source-type" required>
+              <option>Tap</option><option>Borewell</option><option>Open Well</option><option>Lake</option>
+              <option>River</option><option>Pond</option><option>Canal</option><option>Other</option>
+            </select>
+          </label>
+          <label id="other-source-field" class="hidden">Specify source type
+            <input type="text" name="other_source" id="other-source" maxlength="120" placeholder="What kind of water source?">
+          </label>
+        </div>
+        <label>Anything else to share? <span class="optional">(optional)</span><textarea name="notes" rows="4" maxlength="2000" placeholder="What else might help your neighbors understand this observation?"></textarea></label>
+        <label>Photo link <span class="optional">(optional)</span><input type="url" name="photo_url" maxlength="500" placeholder="https://…"><small>Add a public image URL; never share photos of people without consent.</small></label>
+        <div class="safety-note"><span>✳</span><p><b>A gentle reminder</b><br>These are community observations, not lab results. Never drink water you suspect may be unsafe, and contact your local water authority for urgent concerns.</p></div>
+        <button class="button button-primary button-large full-width" type="submit">Share this observation <span>↗</span></button>
+        <p class="form-message" aria-live="polite"></p>
+      </form>
+      <aside class="report-aside">
+        <div class="aside-card">
+          <span class="aside-icon">♧</span><h3>Every observation adds context.</h3>
+          <p>Your neighbors may notice the same changes. Together, those small details create a much clearer local picture.</p>
+          <div class="aside-divider"></div>
+          <div class="aside-proof"><span>✓</span><p><b>Community reviewed</b><small>Other community members can help validate reports.</small></p></div>
+          <div class="aside-proof"><span>↗</span><p><b>Location matters</b><small>A precise pin helps researchers understand patterns.</small></p></div>
+        </div>
+        <div id="report-success" class="success-card hidden">
+          <span class="success-check">✓</span><span class="eyebrow">OBSERVATION SHARED</span>
+          <h2>Thank you for looking out.</h2><p>Your report is now part of your community’s water story.</p>
+          <button id="download-report-csv" class="button button-primary full-width">Download this observation as CSV <span>↓</span></button>
+          <a class="button button-outline full-width" href="map.html">See it on the map <span>→</span></a>
+        </div>
+      </aside>
+    </div>
+  </main>
+  <footer class="site-footer compact-footer">
+    <a class="brand" href="index.html"><span class="brand-mark">≈</span><span>Aqua<span class="brand-light">Collective</span></span></a>
+    <small>Community observations are not a substitute for certified water testing.</small>
+  </footer>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/config.js"></script><script src="js/api.js"></script><script src="js/auth.js"></script>
+  <script src="js/report.js"></script><script src="js/main.js"></script>
+</body>
+</html>

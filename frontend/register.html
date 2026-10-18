@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Join AquaCollective</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">≈</span><span>Aqua<span class="brand-light">Collective</span></span></a>
+    <a class="text-link" href="index.html">← Back to home</a>
+  </header>
+  <main class="auth-layout wrap">
+    <aside class="auth-aside">
+      <span class="eyebrow eyebrow-light">A BETTER VIEW STARTS HERE</span>
+      <h1>Your eyes.<br>Your place.<br><span>Your impact.</span></h1>
+      <p>Join neighbors, students, and water researchers building a clearer picture together.</p>
+      <div class="auth-aside-art"><span class="auth-ripple"></span><span class="auth-drop">≈</span><span class="auth-note">Open to everyone.<br>Rooted in community.</span></div>
+    </aside>
+    <section class="auth-card">
+      <span class="eyebrow">COME ON IN</span>
+      <h2>Create your account</h2>
+      <p class="muted">A couple of details and you’re part of the collective.</p>
+      <form id="register-form" class="form-stack">
+        <label>Your name<input name="name" autocomplete="name" minlength="2" maxlength="80" placeholder="How should we call you?" required></label>
+        <label>Email address<input name="email" type="email" autocomplete="email" placeholder="you@example.com" required></label>
+        <label>I am a
+          <select name="role" required>
+            <option value="citizen">Citizen / Student / Community member</option>
+            <option value="researcher">Researcher</option>
+          </select>
+          <small>Research accounts can access advanced statistics and the anonymized dataset.</small>
+        </label>
+        <label>Create a password<input name="password" type="password" autocomplete="new-password" minlength="10" maxlength="128" placeholder="At least 10 characters" required><small>Use at least 10 characters for a stronger password.</small></label>
+        <button class="button button-primary button-large full-width" type="submit">Create my account <span>→</span></button>
+        <p class="form-message" aria-live="polite"></p>
+      </form>
+      <div class="auth-divider"><span>Already part of the community?</span></div>
+      <a href="login.html" class="button button-outline full-width">Log in</a>
+      <p class="fine-print">By joining, you agree to share observations respectfully and responsibly.</p>
+    </section>
+  </main>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <script src="js/config.js"></script><script src="js/api.js"></script>
+  <script src="js/auth.js"></script><script src="js/main.js"></script>
+</body>
+</html>

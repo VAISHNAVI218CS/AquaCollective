@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5fbfa">
+  <meta name="description" content="Everyday water observations, gathered by communities and connected to action.">
+  <title>AquaCollective — Your voice for water</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">≈</span><span>Aqua<span class="brand-light">Collective</span></span></a>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav class="nav-links"><a class="active" href="index.html">Home</a><a href="map.html">Explore map</a><a data-research-link href="research.html">Research</a><a class="nav-auth" href="login.html">Log in</a><a class="button button-small button-primary" href="report.html">Share an observation <span>↗</span></a></nav>
+  </header>
+  <main>
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="eyebrow-dot"></span> CITIZEN SCIENCE, CLOSE TO HOME</span>
+        <h1>Your voice<br>for water.<br><span>Our bridge to action.</span></h1>
+        <p class="hero-lede">You know your water best. Share what you notice, learn from your neighbors, and help bring local water stories into focus.</p>
+        <div class="hero-actions"><a class="button button-primary button-large" href="report.html">Share a water observation <span>↗</span></a><a class="button button-outline button-large" href="map.html">Explore community reports <span>→</span></a></div>
+        <p class="trust-row"><span>✓</span> No special tools needed <i>·</i> About 2 minutes <i>·</i> Open to everyone</p>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a water droplet and community observations">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="water-drop"><span>≈</span></div>
+        <div class="float-card float-top"><span class="mini-icon mint">✓</span><span><b>Community verified</b><small>Shared knowledge, stronger signal</small></span></div>
+        <div class="float-card float-bottom"><span class="mini-icon peach">↗</span><span><b>Every drop matters</b><small>Local observations. Real impact.</small></span></div>
+        <span class="spark spark-a">✳</span><span class="spark spark-b">·</span><span class="art-label">A community that<br>looks out for water.</span>
+      </div>
+    </section>
+    <section class="stats-strip wrap">
+      <div><span class="stat-icon">⌁</span><span><strong id="home-report-count">—</strong><small>observations shared</small></span></div>
+      <div><span class="stat-icon">◎</span><span><strong id="home-location-count">—</strong><small>places represented</small></span></div>
+      <div><span class="stat-icon">♧</span><span><strong>Open</strong><small>to every community</small></span></div>
+    </section>
+    <section class="section wrap">
+      <div class="section-heading"><div><span class="eyebrow">SMALL OBSERVATIONS, BIGGER PICTURE</span><h2>Water care starts<br>with noticing.</h2></div><p>Not a lab test. Not a complicated process. Just a shared place to record what you see, smell, and experience where you live.</p></div>
+      <div class="steps-grid">
+        <article class="step-card"><span class="step-number">01</span><div class="step-icon icon-blue">◉</div><h3>Notice something</h3><p>Changes in color, clarity, or smell are worth paying attention to. Your observation is a useful starting point.</p></article>
+        <article class="step-card"><span class="step-number">02</span><div class="step-icon icon-peach">↗</div><h3>Share the moment</h3><p>Add a location and a few simple details. It takes around two minutes, and every report builds context.</p></article>
+        <article class="step-card"><span class="step-number">03</span><div class="step-icon icon-green">✳</div><h3>Strengthen the signal</h3><p>Neighbors can validate what they see. A clearer community picture can help people ask better questions.</p></article>
+      </div>
+    </section>
+    <section class="community-band"><div class="wrap band-inner"><div><span class="eyebrow eyebrow-light">LOCAL KNOWLEDGE, CONNECTED</span><h2>Many eyes on the water.<br>A clearer view for everyone.</h2><p>Explore recent community observations on the live map. Every marker tells a local story.</p><a class="button button-white button-large" href="map.html">Explore the live map <span>→</span></a></div><div class="band-graphic"><span class="band-ripple ripple-1"></span><span class="band-ripple ripple-2"></span><span class="band-pin pin-1">●</span><span class="band-pin pin-2">●</span><span class="band-pin pin-3">●</span><div class="band-tag">Observations, together <b>↗</b></div></div></div></section>
+    <section class="section wrap"><div class="cta-card"><div class="cta-mark">≈</div><div><span class="eyebrow">YOUR COMMUNITY NEEDS YOUR EYES</span><h2>Start with what you notice.</h2><p>Help your neighborhood understand its water, one observation at a time.</p></div><a href="report.html" class="button button-primary button-large">Share an observation <span>↗</span></a></div></section>
+  </main>
+  <footer class="site-footer"><a class="brand" href="index.html"><span class="brand-mark">≈</span><span>Aqua<span class="brand-light">Collective</span></span></a><p>A community-powered view of local water.</p><div><a href="map.html">Explore</a><a href="research.html">Research</a><a href="login.html">Your account</a></div><small>© 2026 AquaCollective · Community observations are not a substitute for certified water testing.</small></footer>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <script src="js/config.js"></script><script src="js/api.js"></script><script src="js/auth.js"></script><script src="js/main.js"></script>
+</body>
+</html>

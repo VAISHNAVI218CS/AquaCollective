@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research workspace — AquaCollective</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">≈</span><span>Aqua<span class="brand-light">Collective</span></span></a>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav class="nav-links">
+      <a href="index.html">Home</a><a href="map.html">Explore map</a>
+      <a class="active" data-research-link href="research.html">Research</a>
+      <a class="nav-auth" href="login.html">Log in</a>
+    </nav>
+  </header>
+
+  <main class="page-main wrap research-page">
+    <section class="page-intro research-intro">
+      <span class="eyebrow">COMMUNITY DATA, RESEARCH READY</span>
+      <h1>Local knowledge.<br><span>Research potential.</span></h1>
+      <p>Explore community observations, share your findings, and connect with people working toward healthier water.</p>
+    </section>
+
+    <section id="research-access" class="panel access-card">
+      <div class="access-icon">⌕</div>
+      <div><h2>Researcher access</h2><p>Sign in with a researcher or administrator account to access this workspace.</p><a class="button button-primary" href="login.html?next=research.html">Log in to researcher access <span>→</span></a></div>
+    </section>
+
+    <div id="research-dashboard" class="hidden">
+      <section class="research-hero panel">
+        <div><span class="eyebrow eyebrow-light">THE RESEARCH WORKSPACE</span><h2>Evidence grows when we share it.</h2><p>Explore community observations, publish your work, and find your next collaborator.</p></div>
+        <button class="button button-white" id="jump-publish">Publish your research <span>↗</span></button>
+        <div class="research-hero-orb" aria-hidden="true">≈</div>
+      </section>
+
+      <section class="research-metrics research-metrics-spaced" aria-label="Community dataset summary">
+        <article class="metric-card"><span class="metric-label">Observations</span><strong id="research-total">—</strong><small>in the shared dataset</small></article>
+        <article class="metric-card"><span class="metric-label">Community verified</span><strong id="research-verified">—</strong><small>validated by participants</small></article>
+        <article class="metric-card"><span class="metric-label">Higher concern</span><strong id="research-high-risk">—</strong><small>based on reported signals</small></article>
+        <article class="metric-card"><span class="metric-label">Average confidence</span><strong id="research-trust">—</strong><small>community validation score</small></article>
+      </section>
+
+      <section class="research-tools-grid">
+        <article class="panel research-tool-card">
+          <div class="panel-heading"><div><span class="eyebrow">EXPLORE THE DATA</span><h2>Advanced filters</h2></div><span class="privacy-pill">De-identified</span></div>
+          <div class="research-filters">
+            <label>Search observations<input id="research-search" type="search" placeholder="Place, color, algae, source…"></label>
+            <label>Validation status<select id="research-status"><option value="">All statuses</option><option value="pending">Pending</option><option value="validated">Validated</option><option value="rejected">Rejected</option></select></label>
+            <label>Reported concern<select id="research-risk"><option value="">All levels</option><option value="low">Lower</option><option value="medium">Some</option><option value="high">Higher</option></select></label>
+          </div>
+          <div class="filter-actions">
+            <label class="saved-view-select">Saved views<select id="saved-view-select"><option value="">Choose a saved view…</option></select></label>
+            <button id="save-view" class="button button-outline">Save current filters</button>
+            <button id="delete-view" class="button button-quiet" disabled>Delete saved view</button>
+          </div>
+          <div class="export-actions">
+            <button id="research-export" class="button button-primary">Download filtered CSV <span>↓</span></button>
+            <button id="research-export-json" class="button button-outline">Download JSON <span>↓</span></button>
+          </div>
+        </article>
+
+        <article class="panel research-tool-card summary-card">
+          <div class="panel-heading"><div><span class="eyebrow">QUICK INSIGHTS</span><h2>Generate research summary</h2></div><span class="summary-icon">✳</span></div>
+          <p>Build a concise overview from the latest community dataset.</p>
+          <button id="generate-summary" class="button button-primary">Generate summary <span>→</span></button>
+          <div id="summary-output" class="insight-output hidden" aria-live="polite"></div>
+        </article>
+      </section>
+
+      <section class="panel research-tool-card compare-card">
+        <div class="panel-heading"><div><span class="eyebrow">PLACE-TO-PLACE VIEW</span><h2>Compare two locations</h2></div><span class="privacy-pill">Community reports</span></div>
+        <p>Compare report counts, validation, confidence, and concern indicators by location or source name.</p>
+        <form id="compare-form" class="compare-form">
+          <label>First location<input id="compare-location-a" maxlength="160" minlength="2" placeholder="e.g. Mysuru" required></label>
+          <span class="compare-vs">VS</span>
+          <label>Second location<input id="compare-location-b" maxlength="160" minlength="2" placeholder="e.g. Mandya" required></label>
+          <button class="button button-primary" type="submit">Compare locations <span>→</span></button>
+        </form>
+        <div id="compare-output" class="compare-results hidden" aria-live="polite"></div>
+      </section>
+
+      <section class="publish-layout" id="publish-section">
+        <article class="panel publish-card">
+          <div class="panel-heading"><div><span class="eyebrow">SHARE YOUR FINDINGS</span><h2 id="publish-form-title">Publish research</h2></div><span class="publish-mark">↗</span></div>
+          <p class="section-help">Share water-quality research with fellow researchers. Required fields are marked in the form.</p>
+          <form id="publish-form" class="publish-form">
+            <label>Research title<input name="title" minlength="4" maxlength="200" placeholder="A clear title for your work" required></label>
+            <label>Short abstract / summary<textarea name="abstract" minlength="20" maxlength="1000" rows="3" placeholder="What did you investigate, and what did you find?" required></textarea></label>
+            <label>Full description or findings<textarea name="content" minlength="30" maxlength="20000" rows="7" placeholder="Share the background, approach, findings, and limitations…" required></textarea></label>
+            <div class="two-column">
+              <label>Related location <span class="optional">(optional)</span><input name="location" maxlength="160" placeholder="Region, watershed, or community"></label>
+              <label>Date of research<input name="research_date" type="date" required></label>
+            </div>
+            <label>Tags <span class="optional">(comma-separated, up to 12)</span><input name="tags" maxlength="500" placeholder="Groundwater, Pollution, Karnataka"></label>
+            <div class="upload-choice">
+              <label>Attach a PDF <span class="optional">(up to 10 MB)</span><input id="publication-pdf" name="pdf" type="file" accept="application/pdf,.pdf"></label>
+              <label>Or link to your work <span class="optional">(optional)</span><input name="link" type="url" maxlength="500" placeholder="https://…"></label>
+            </div>
+            <div id="publish-progress" class="form-message" aria-live="polite"></div>
+            <div class="publish-actions"><button id="publish-submit" class="button button-primary" type="submit">Publish research <span>↗</span></button><button id="publish-cancel-edit" class="button button-outline hidden" type="button">Cancel edit</button></div>
+          </form>
+        </article>
+
+        <aside class="panel collaboration-card">
+          <span class="collab-icon">♧</span><span class="eyebrow">BETTER WORK, TOGETHER</span>
+          <h2>Looking for a collaborator?</h2>
+          <p>Send a collaboration note to the AquaCollective research team. Your request is saved to your account for follow-up.</p>
+          <button id="open-collaboration" class="button button-outline">Request collaboration <span>→</span></button>
+          <div id="collaboration-panel" class="hidden">
+            <form id="collaboration-form" class="publish-form">
+              <label>Contact email <span class="optional">(optional)</span><input name="recipient" type="email" placeholder="researcher@example.org"></label>
+              <label>Subject<input name="subject" minlength="4" maxlength="160" placeholder="What would you like to work on?" required></label>
+              <label>Your note<textarea name="message" minlength="20" maxlength="3000" rows="5" placeholder="Share a little about the collaboration you have in mind…" required></textarea></label>
+              <button class="button button-primary" type="submit">Send collaboration request <span>↗</span></button>
+              <p class="form-message" id="collaboration-message" aria-live="polite"></p>
+            </form>
+          </div>
+        </aside>
+      </section>
+
+      <section class="panel publication-section">
+        <div class="panel-heading publication-heading">
+          <div><span class="eyebrow">YOUR WORK, IN ONE PLACE</span><h2>My published research</h2></div>
+          <span class="count-label" id="my-publication-count">Loading…</span>
+        </div>
+        <div id="my-publication-feed" class="publication-grid"></div>
+      </section>
+
+      <section class="panel publication-section">
+        <div class="panel-heading publication-heading">
+          <div><span class="eyebrow">SHARED BY THE COMMUNITY</span><h2>Published research</h2></div>
+          <span class="count-label" id="publication-count">Loading…</span>
+        </div>
+        <div class="publication-search">
+          <label>Search published work<input id="publication-search" type="search" placeholder="Title, author, topic, location…"></label>
+          <label>Filter by tag<select id="publication-tag"><option value="">All tags</option></select></label>
+        </div>
+        <div id="publication-feed" class="publication-grid"></div>
+        <div id="publication-empty" class="empty-state hidden"><span>⌁</span><h3>No published research matches yet.</h3><p>Try another search or be the first to share your work.</p></div>
+      </section>
+
+      <div class="research-disclaimer"><span>ⓘ</span><p>Community observations are self-reported, not laboratory measurements. Automatically generated summaries and location comparisons are descriptive only and should not be used alone to assess drinking-water safety.</p></div>
+    </div>
+  </main>
+
+  <dialog id="publication-dialog" class="publication-dialog">
+    <form method="dialog" class="dialog-close-form"><button class="dialog-close" aria-label="Close">×</button></form>
+    <div id="publication-detail"></div>
+  </dialog>
+
+  <footer class="site-footer compact-footer"><a class="brand" href="index.html"><span class="brand-mark">≈</span><span>Aqua<span class="brand-light">Collective</span></span></a><small>Community observations are not a substitute for certified water testing.</small></footer>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <script src="js/config.js"></script><script src="js/api.js"></script><script src="js/auth.js"></script>
+  <script src="js/research.js"></script><script src="js/main.js"></script>
+</body>
+</html>

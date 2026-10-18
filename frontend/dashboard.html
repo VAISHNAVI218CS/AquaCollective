@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your dashboard — AquaCollective</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">≈</span><span>Aqua<span class="brand-light">Collective</span></span></a>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <nav class="nav-links">
+      <a href="index.html">Home</a><a href="map.html">Explore map</a><a class="active" href="dashboard.html">My dashboard</a>
+      <a data-research-link href="research.html">Research</a><a class="nav-auth" href="login.html">Log in</a>
+    </nav>
+  </header>
+  <main class="page-main wrap">
+    <div class="page-intro dashboard-intro">
+      <div><span class="eyebrow" id="dashboard-eyebrow">YOUR COMMUNITY CONTRIBUTIONS</span><h1 id="dashboard-greeting">Your dashboard</h1><p id="dashboard-description">Every small detail helps tell a bigger water story.</p></div>
+      <div class="intro-actions citizen-dashboard-actions">
+        <button id="export-personal" class="button button-outline">Download my CSV <span>↓</span></button>
+        <a class="button button-primary" href="report.html">Share an observation <span>↗</span></a>
+      </div>
+    </div>
+    <div id="dashboard-auth-prompt" class="panel prompt-card hidden">
+      <span class="prompt-icon">⌁</span>
+      <div><h2>Your observations, all in one place.</h2><p>Log in to see your personal reports, track community responses, and download your contributions.</p></div>
+      <a class="button button-primary" href="login.html">Log in to continue <span>→</span></a>
+    </div>
+
+    <section id="researcher-dashboard" class="hidden">
+      <div class="panel researcher-welcome">
+        <div><span class="eyebrow">RESEARCHER DASHBOARD</span><h2>Welcome to the research workspace.</h2><p>Explore community-submitted observations, review aggregate patterns, and export the de-identified dataset.</p></div>
+        <a class="button button-primary" href="research.html">Open research tools <span>→</span></a>
+      </div>
+      <div class="metric-grid researcher-dashboard-metrics">
+        <article class="metric-card"><span class="metric-label">Observations</span><strong id="researcher-total">—</strong><small>in the shared dataset</small></article>
+        <article class="metric-card"><span class="metric-label">Community verified</span><strong id="researcher-verified">—</strong><small>validated by participants</small></article>
+        <article class="metric-card"><span class="metric-label">Higher concern</span><strong id="researcher-high-risk">—</strong><small>based on reported signals</small></article>
+        <article class="metric-card"><span class="metric-label">Average confidence</span><strong id="researcher-trust">—</strong><small>community validation score</small></article>
+      </div>
+      <div class="research-disclaimer"><span>ⓘ</span><p>These are community observations, not laboratory measurements or a drinking-water safety assessment.</p></div>
+    </section>
+
+    <section id="citizen-dashboard" class="hidden">
+      <div class="metric-grid">
+        <article class="metric-card"><span class="metric-label">Your observations</span><strong id="metric-total">0</strong><small>shared with your community</small><i class="metric-ornament teal">⌁</i></article>
+        <article class="metric-card"><span class="metric-label">Community verified</span><strong id="metric-verified">0</strong><small>observations validated</small><i class="metric-ornament green">✓</i></article>
+        <article class="metric-card"><span class="metric-label">Community observations</span><strong id="metric-members">—</strong><small>shared across AquaCollective</small><i class="metric-ornament orange">♧</i></article>
+        <article class="metric-card"><span class="metric-label">Places observed</span><strong id="metric-places">0</strong><small>across your contributions</small><i class="metric-ornament blue">◎</i></article>
+      </div>
+      <div class="dashboard-grid">
+        <section class="panel chart-panel"><div class="panel-heading"><div><span class="eyebrow">YOUR ACTIVITY</span><h2>Observations over time</h2></div></div><div class="chart-wrap"><canvas id="activity-chart" aria-label="Chart of your observations by month"></canvas></div></section>
+        <section class="panel chart-panel"><div class="panel-heading"><div><span class="eyebrow">YOUR OBSERVATIONS</span><h2>What you noticed</h2></div></div><div class="chart-wrap chart-wrap-small"><canvas id="quality-chart" aria-label="Chart of your observation colors"></canvas></div></section>
+      </div>
+      <section class="panel personal-reports"><div class="panel-heading"><div><span class="eyebrow">YOUR FIELD NOTES</span><h2>Recent observations</h2></div><a href="report.html" class="text-link">Add another →</a></div><div id="personal-report-list"></div></section>
+    </section>
+  </main>
+  <footer class="site-footer compact-footer"><a class="brand" href="index.html"><span class="brand-mark">≈</span><span>Aqua<span class="brand-light">Collective</span></span></a><small>Community observations are not a substitute for certified water testing.</small></footer>
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+  <script src="js/config.js"></script><script src="js/api.js"></script><script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script><script src="js/main.js"></script>
+</body>
+</html>
